@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Jersey+20&family=Pixelify+Sans:wght@400..700&family=Sixtyfour+Convergence&display=swap");
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Jersey 20", sans-serif;
+  font-size: 32px;
+  padding: 20px;
+  text-shadow: 0 0 2px white, 0 0 5px whitesmoke;
+}
+
+/* Scanlines overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.03),
+    rgba(0, 255, 0, 0.03) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  z-index: 10;
+}
+
+#terminal {
+  white-space: pre-wrap;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+#terminal.glow {
+  text-shadow: 0 0 3px rgb(255, 255, 255), 0 0 6px rgb(255, 255, 255);
+}
+
+.cursor {
+  font-size: 16px;
+  display: inline;
+  color: white;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+#ghost {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-family: monospace;
+  white-space: pre-wrap;
+  pointer-events: none;
+  opacity: 0;
+  text-shadow: 0 0 2px white, 0 0 5px whitesmoke;
+  transition: opacity 0.8s ease-out;
+  z-index: 5;
+}
+
+#desktop {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #008080; /* Windows 95 teal desktop */
+  color: white;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.icon {
+  width: 144px;
+  text-align: center;
+  display: block;
+  margin: 10px;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto 4px;
+  cursor: pointer;
+}
+
+.window {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  background: #c0c0c0;
+  border: 2px solid #000;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px #404040;
+  z-index: 100;
+  resize: both;
+  overflow: auto;
+}
+
+.title-bar {
+  background: linear-gradient(to bottom, #000080, #000060);
+  color: white;
+  padding: 2px 4px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  user-select: none;
+}
+
+.title-bar button {
+  background: #c0c0c0;
+  border: 2px outset #fff;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.window-content {
+  padding: 8px;
+  background: #fdf6e3;
+  color: black;
+  height: calc(100% - 20px);
+  overflow: auto;
+  font-size: 12px;
+}
+
+.file {
+  display: inline-block;
+  width: 72px;
+  text-align: center;
+  margin: 10px;
+  cursor: pointer;
+  user-select: none;
+  color: black;
+  font-size: 12px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.file img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  margin: 0 auto 4px;
+}
+
+img {
+  cursor: pointer;
+}
+
+.folder {
+  width: 288px;
+  text-align: center;
+  margin: 10px;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  font-size: 32px;
+  display: inline-block;
+  flex-direction: column;
+}
+
+.folder img {
+  width: 128px;
+  height: 128px;
+  display: block;
+  margin: 0 auto 4px;
+}
+
+#folder-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+pre {
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  margin: 0;
+}
